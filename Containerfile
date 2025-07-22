@@ -9,6 +9,7 @@ RUN dnf install httpd -y
 EXPOSE 80
 
 # Configure httpd
+ARG APP_ROOT=/opt/app-root
 ENV HTTPD_APP_ROOT=${APP_ROOT} \
     HTTPD_CONFIGURATION_PATH=${APP_ROOT}/etc/httpd.d \
     HTTPD_MAIN_CONF_PATH=/etc/httpd/conf \
