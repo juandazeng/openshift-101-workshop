@@ -1,5 +1,9 @@
-FROM ubi9:latest
+FROM registry.access.redhat.com/ubi9/ubi
 USER root
+
+# Remove the protected Red Hat repo file and the plugin itself
+RUN rm -f /etc/yum.repos.d/redhat.repo && \
+    dnf --disableplugin=subscription-manager remove -y dnf-plugin-subscription-manager subscription-manager
 
 # Install process utilities (ps, etc.)
 RUN dnf install procps-ng -y
