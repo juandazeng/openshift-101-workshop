@@ -1,0 +1,8 @@
+FROM registry.access.redhat.com/ubi9/ubi AS my-builder
+
+FROM scratch
+
+COPY --from=my-builder /bin/sh /bin/sh
+COPY --from=my-builder /bin/ls /bin/ls
+
+ENTRYPOINT ["/bin/sh"]
