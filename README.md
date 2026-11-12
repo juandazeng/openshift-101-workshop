@@ -24,6 +24,7 @@ podman run --rm -it --volume ./src/:/app/:Z --name c1 --publish 8081:80 myfirstc
 
 # supertiny
 podman build -t supertinyapp:v1.0 .
+podman run --rm -it supertinyapp:v1.0
 
 
 # Distroless
