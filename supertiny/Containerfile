@@ -5,7 +5,8 @@ RUN mkdir -p /rootfs/bin /rootfs/lib64
 
 # Copy the binaries (Note: /bin/sh is a symlink to /bin/bash in UBI 9)
 RUN cp /bin/bash /rootfs/bin/bash && \
-    cp /bin/ls /rootfs/bin/ls
+    cp /bin/ls /rootfs/bin/ls && \
+    cp /usr/bin/coreutils /rootfs/usr/bin/coreutils
 
 # Automatically find and copy all required shared libraries for sh and ls
 RUN for bin in /bin/sh /bin/ls; do \
