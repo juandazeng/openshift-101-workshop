@@ -18,9 +18,9 @@ ps -ef --forest
 
 
 
-# Volume mount
-podman run --rm -it --volume ./src/:/app/:Z --name c1 --publish 8081:80 myfirstcontainer:v1.0 /bin/sh
-
+# Volume mount and owner mapping
+podman run --rm -d --name c1 --volume ./src/:/app/:Z myfirstcontainer:v1.0
+podman exec -it c1 /bin/bash
 
 # supertiny
 podman build -t supertinyapp:v1.0 .
