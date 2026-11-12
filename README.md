@@ -22,6 +22,8 @@ ps -ef --forest
 podman run --rm -it --volume ./src/:/app/:Z --name c1 --publish 8081:80 myfirstcontainer:v1.0 /bin/sh
 
 
+# supertiny
+podman build -t supertinyapp:v1.0 .
 
 
 # Distroless
