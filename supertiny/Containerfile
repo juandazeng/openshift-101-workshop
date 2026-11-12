@@ -3,15 +3,17 @@ FROM registry.access.redhat.com/ubi9/ubi AS my-builder
 # Create a staging directory for the root filesystem
 RUN mkdir -p /rootfs/bin /rootfs/lib64
 
-# Copy the binaries (Note: /bin/sh is a symlink to /bin/bash in UBI 9)
-RUN cp /bin/bash /rootfs/bin/bash && \
-    cp /bin/ls /rootfs/bin/ls && \
-    cp /usr/bin/coreutils /rootfs/usr/bin/coreutils
+# Create lib64 directory and use 'install -D' to auto-create parent paths for binaries
+RUN mkdir -p /rootfs/lib64 && \
+    install -D /bin/bash /rootfs/bin/bash && \
+    install -D /bin/ls /rootfs/bin/ls && \
+    install -D /usr/bin/coreutils /rootfs/usr/bin/coreutils
 
-# Automatically find and copy all required shared libraries for sh and ls
-RUN for bin in /bin/sh /bin/ls; do \
+# Copy all required shared libraries for bash and coreutils
+RUN for bin in /bin/bash /usr/bin/coreutils; do \
         ldd "$bin" | grep -o '/lib64/[^ ]*' | xargs -I {} cp -L {} /rootfs/lib64/; \
     done
+
 
 # Build the final scratch image from the staged directory
 FROM scratch
