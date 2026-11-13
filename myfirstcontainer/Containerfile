@@ -17,6 +17,9 @@ RUN sed -i 's/Listen 80/Listen 8080/' /etc/httpd/conf/httpd.conf && \
     chgrp -R 0 /var/run/httpd /var/log/httpd /etc/httpd && \
     chmod -R g=u /var/run/httpd /var/log/httpd /etc/httpd
 
+WORKDIR /app
+COPY src/test.py test.py
+
 EXPOSE 8080
 
 # Run as non-root user so behavior matches OpenShift locally
