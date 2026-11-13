@@ -57,3 +57,8 @@ podman push quay.io/bankingdemo/supertinyapp:v1.0
 
 roxctl --insecure-skip-tls-verify image scan --image=quay.io/bankingdemo/myfirstcontainer:v1.0 --severity CRITICAL,IMPORTANT -o table
 roxctl --insecure-skip-tls-verify image scan --image=quay.io/bankingdemo/supertinyapp:v1.0 --severity CRITICAL,IMPORTANT -o table
+
+
+## OpenShift deployment
+oc apply -f myfirstcontainer.yaml
+
