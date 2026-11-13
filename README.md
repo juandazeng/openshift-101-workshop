@@ -1,12 +1,12 @@
 # openshift-101-workshop
 
 # Build
-podman build -t myfirstcontainer:v1.0 .
+podman build -t myfirstcontainer:v1.2 .
 
 # Run
-podman run -d --rm --name c1 --publish 8080:8080 myfirstcontainer:v1.0
-podman run -d --rm --name c2 --publish 8081:8080 myfirstcontainer:v1.0
-podman run -d --rm --name c3 --publish 8082:8080 myfirstcontainer:v1.0
+podman run -d --rm --name c1 --publish 8080:8080 myfirstcontainer:v1.2
+podman run -d --rm --name c2 --publish 8081:8080 myfirstcontainer:v1.2
+podman run -d --rm --name c3 --publish 8082:8080 myfirstcontainer:v1.2
 
 # See running processes in container
 podman exec -it c1 sh
@@ -19,7 +19,7 @@ ps -ef --forest
 
 
 # Volume mount and owner mapping
-podman run --rm -d --name c1 --volume ./src/:/app/:Z myfirstcontainer:v1.0
+podman run --rm -d --name c1 --volume ./src/:/app/:Z myfirstcontainer:v1.2
 podman exec -it c1 /bin/bash
 
 # supertiny
@@ -49,13 +49,13 @@ export ROX_ENDPOINT=central-stackrox.apps.cluster-bz5rg.dyn.redhatworkshops.io:4
 ## podman to quay.io and scan
 podman login -u='bankingdemo+bankingdemo-robot' -p='...' quay.io
 
-podman tag localhost/myfirstcontainer:v1.0 quay.io/bankingdemo/myfirstcontainer:v1.0
-podman push quay.io/bankingdemo/myfirstcontainer:v1.0
+podman tag localhost/myfirstcontainer:v1.2 quay.io/bankingdemo/myfirstcontainer:v1.2
+podman push quay.io/bankingdemo/myfirstcontainer:v1.2
 
 podman tag localhost/supertinyapp:v1.0 quay.io/bankingdemo/supertinyapp:v1.0
 podman push quay.io/bankingdemo/supertinyapp:v1.0
 
-roxctl --insecure-skip-tls-verify image scan --image=quay.io/bankingdemo/myfirstcontainer:v1.0 --severity CRITICAL,IMPORTANT -o table
+roxctl --insecure-skip-tls-verify image scan --image=quay.io/bankingdemo/myfirstcontainer:v1.2 --severity CRITICAL,IMPORTANT -o table
 roxctl --insecure-skip-tls-verify image scan --image=quay.io/bankingdemo/supertinyapp:v1.0 --severity CRITICAL,IMPORTANT -o table
 
 
