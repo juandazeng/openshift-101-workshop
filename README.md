@@ -47,7 +47,7 @@ export ROX_API_TOKEN=...
 export ROX_ENDPOINT=central-stackrox.apps.cluster-bz5rg.dyn.redhatworkshops.io:443
 
 ## podman to quay.io and scan
-podman login quay.io
+podman login -u='bankingdemo+bankingdemo-robot' -p='...' quay.io
 
 podman tag localhost/myfirstcontainer:v1.0 quay.io/bankingdemo/myfirstcontainer:v1.0
 podman push quay.io/bankingdemo/myfirstcontainer:v1.0

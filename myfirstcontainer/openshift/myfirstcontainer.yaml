@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: myfirstcontainer
-          image: quay.io/bankingdemo/myfirstcontainer:v1.0
+          image: quay.io/bankingdemo/myfirstcontainer:v1.1
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
