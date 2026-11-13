@@ -22,6 +22,9 @@ ps -ef --forest
 podman run --rm -d --name c1 --volume ./src/:/app20261113/:Z myfirstcontainer:v1.2
 podman exec -it c1 /bin/bash
 
+# Image layers
+podman inspect myfirstcontainer:v1.2
+
 # supertiny
 podman build -t supertinyapp:v1.0 .
 podman run --rm -it supertinyapp:v1.0
