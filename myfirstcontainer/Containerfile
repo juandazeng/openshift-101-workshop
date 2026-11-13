@@ -23,7 +23,7 @@ COPY src/test.py test.py
 EXPOSE 8080
 
 # Run as non-root user so behavior matches OpenShift locally
-# USER 1001
+USER 1001
 
 # Launch
 ENTRYPOINT ["/usr/sbin/httpd", "-DFOREGROUND"]
