@@ -10,7 +10,7 @@ RUN dnf install procps-ng -y
 
 # Install httpd
 RUN dnf install httpd -y
-EXPOSE 80
+EXPOSE 8080
 
 # Configure httpd
 ARG APP_ROOT=/opt/app-root
