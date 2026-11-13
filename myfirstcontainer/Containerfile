@@ -29,5 +29,8 @@ RUN sed -i \
 RUN sed -i \
 's/www\.example\.com/localhost/g' $HTTPD_MAIN_CONF_PATH/httpd.conf
 
+# Run as non-root user so behavior matches OpenShift locally
+USER 1001
+
 # Launch
 ENTRYPOINT ["/usr/sbin/httpd", "-DFOREGROUND"]
