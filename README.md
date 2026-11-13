@@ -60,6 +60,7 @@ roxctl --insecure-skip-tls-verify image scan --image=quay.io/bankingdemo/superti
 
 
 ## OpenShift deployment
+oc new-project uobdemo
 oc delete all -l app=myfirstcontainer -n uobdemo
-oc apply -f myfirstcontainer.yaml
+oc apply -f myfirstcontainer.yaml -n uobdemo
 roxctl deployment check --file myfirstcontainer.yaml
